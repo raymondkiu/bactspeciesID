@@ -1,7 +1,7 @@
 # speciesID
 Microbial species identification using 16S rRNA gene (via ABRicate v0.8)
 
-## Dependecies
+## Dependencies
 * ABRicate v0.8.11 (https://github.com/tseemann/abricate) will need to build a 16S rRNA database
 * Barrnap v0.7 (https://github.com/tseemann/abricate)
 * Bedtools
