@@ -1,5 +1,5 @@
 # speciesID
-Microbial species identification using 16S rRNA gene (via ABRicate v0.8)
+Fast microbial species identification (16S rRNA gene-based approach) using genome assemblies
 
 ## Dependencies
 * ABRicate v0.8.11 (https://github.com/tseemann/abricate) will need to build a 16S rRNA database
