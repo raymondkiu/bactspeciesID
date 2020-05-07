@@ -12,7 +12,7 @@ Microbial species identification using 16S rRNA gene (via ABRicate v0.8)
 $ speciesID.sh -h
 This script identifies bacterial species using genome assemblies
 
-Usage: ./16S_identification.sh [options] FASTA
+Usage: ./speciesID.sh [options] FASTA
 Option:
  -i BLAST identity (default:99)
  -d ABRicate database (default:SILVA-16S)
