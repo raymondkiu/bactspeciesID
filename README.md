@@ -2,8 +2,8 @@
 Fast microbial species identification (16S rRNA gene-based approach) using genome assemblies
 
 ## Dependencies
-* ABRicate v0.8.11 (https://github.com/tseemann/abricate) will need to build a 16S rRNA database
-* Barrnap v0.7 (https://github.com/tseemann/abricate)
+* ABRicate v0.8.11 (https://github.com/tseemann/abricate) will need to build a 16S rRNA database; other versions not tested
+* Barrnap v0.7 (https://github.com/tseemann/barrnap)
 * Bedtools
 * Samtools
 
