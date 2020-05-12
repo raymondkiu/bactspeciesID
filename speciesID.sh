@@ -79,7 +79,7 @@ rm $fasta-16S-id.txt
 
 echo "16S rRNA gene sequence is now stored in $fasta-16S.fna"
 echo "identifying species using ABRicate $DATABASE database at identity >$IDENTITY%..."
-abricate --quiet --db $DATABASE --minid=$IDENTITY $fasta-16S.fna|grep -v "#FILE" | awk '{print $12" "$13}' > $fasta.species
+abricate --quiet --db $DATABASE --minid=$IDENTITY $fasta-16S.fna|grep -v "#FILE" | awk '{print $13" "$14}' > $fasta.species
 
 echo "Species identified is now stored in $fasta.species"
 echo "Removing intermediary file..."
