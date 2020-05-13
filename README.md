@@ -6,6 +6,11 @@ Fast microbial species identification (16S rRNA gene-based approach) using genom
 * Barrnap v0.7 (https://github.com/tseemann/barrnap)
 * Bedtools
 * Samtools
+* SILVA 16S database can be downloaded from https://zenodo.org/record/3731176/files/silva_species_assignment_v138.fa.gz?download=1 with format
+```
+>HG530238.1.1461 Paucibacter toxinivorans
+TCAGATTGAACGCTGGCGGCATGCCTTACACATGCAAGTCGAACGGCAGCACGGGAGCAATCCTGGTGGCGAGTGGCGAACGGGTGAGTAATGTATCGGAACGTGCCCAGTTGTGGGGGATAACTACTTGAAAGAGTGGCTAATACCGCATACGACCTGAGGGTGAAAGCGGGGGATCGCAAGACCTCGCGCAATTGGAGCGGCCGATATCAGATTAGCTAGTTGGTGGGGTAAAAGCCCACCAAGGC
+```
 
 ## Usage
 ```
