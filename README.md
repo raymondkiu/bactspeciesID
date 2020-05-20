@@ -1,5 +1,5 @@
 # speciesID
-Fast microbial species identification (16S rRNA gene-based approach) using genome assemblies
+Fast microbial species identification (16S rRNA gene-based approach) using genome assemblies. This software is run via [ABRicate](https://github.com/tseemann/abricate) gene screening on contigs.
 
 ## Dependencies - can be installed using Conda
 * ABRicate v1.0.1 (https://github.com/tseemann/abricate) with all its dependecies such as Blast+ v2.2.30, any2fasta, Emboss etc, also  need to build a 16S rRNA database (recommend SILVA database)
@@ -8,13 +8,17 @@ Fast microbial species identification (16S rRNA gene-based approach) using genom
 * Samtools
 
 ## 16S rRNA Database
-* SILVA 16S database can be downloaded from https://zenodo.org/record/3731176/files/silva_species_assignment_v138.fa.gz?download=1 with format
+* SILVA 16S database can be [downloaded from here](https://zenodo.org/record/3731176/files/silva_species_assignment_v138.fa.gz?download=1) with format
 ```
 >HG530238.1.1461 Paucibacter toxinivorans
 TCAGATTGAACGCTGGCGGCATGCCTTACACATGCAAGTCGAACGGCAGCACGGG
 ```
 
+## To set up sequence database in ABRicate
+Please refer to this section in [ABRicate repository](https://github.com/tseemann/abricate#making-your-own-database) and rename the database as SILVA-16S if you use the SILVA database (alternatively, any name you like).
+
 ## Usage
+### Options
 ```
 $ speciesID.sh -h
 This script identifies bacterial species using genome assemblies
@@ -30,7 +34,13 @@ Option:
 Version 1.0 (2020)
 Author: Raymond Kiu Raymond.Kiu@quadram.ac.uk
 ```
-For example
+### Input
+Multi-fasta genome assemblies, one file at a time. Can be any bacterial species.
+
+### Run the software
+You can specify BLASTn identity and ABRicate database if you like, 16S rRNA species boundary is recommended at 98.6%, so 99% is to play safe (default parameter anyway). SILVA database has more than 100K sequences and manually curated so it is the recommended database to use. I have tested on >70 samples from multiple species e.g. *Bifidobacterium breve, Bifidobacterium longum, Staphylococcus spp, E. coli spp, Citrobacter spp* etc, and achieved 100% accuracy based on ANI (>95%)support (compared with type strains). Can be used as a quick preliminary analysis.
+This script will only extract one 16S rRNA gene in the genomes even if there is multiple 16S genes in one genome, so could not detect contamination and is not built for that purpose.
+-i and -d are optional, if not specified it will run at default parameters.
 ```
 $ speciesID.sh -i 99 -d SILVA-16S FASTA
 
@@ -50,3 +60,17 @@ Programme will now exit
 The species identified for CA-20.fna is 
 Bifidobacterium bifidum
 ```
+### Output
+As the result will be shown on stdout, so you may use > sign to save into a file.
+```
+$ speciesID.sh -i 99 -d SILVA-16S FASTA > FASTA.species.txt
+```
+
+## Issues
+This script has been tested on Linux OS, it should run smoothly if dependencies are properly installed. Please report any issues to the [issues page](https://github.com/raymondkiu/speciesID/issues).
+
+## License
+[GPLv3](https://github.com/raymondkiu/speciesID/blob/master/LICENSE)
+
+## Author
+Raymond Kiu Raymond.Kiu@quadram.ac.uk
