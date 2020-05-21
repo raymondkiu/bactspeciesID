@@ -25,13 +25,14 @@ This script identifies bacterial species using genome assemblies
 
 Usage: ./speciesID.sh [options] FASTA
 Option:
- -i BLAST identity (default:99)
+ -i BLASTn identity (default:99)
+ -c BLASTn coverage (default:50)
  -d ABRicate database (default:SILVA-16S)
  -h print usage and exit
  -a print author and exit
  -v print version and exit
 
-Version 1.0 (2020)
+Version 1.1 (2020)
 Author: Raymond Kiu Raymond.Kiu@quadram.ac.uk
 ```
 ### Input
@@ -44,7 +45,7 @@ This script will only extract one 16S rRNA gene in the genomes even if there is 
 ```
 $ speciesID.sh -i 99 -d SILVA-16S FASTA
 
-will identify with BLAST identity 99% with ABRicate database SILVA-16S
+will identify with BLASTn identity 99% and BLASTn coverage 50% with ABRicate database SILVA-16S
 identifying 16S rRNA genes from genome assembly CA-20.fna ...
 16S rRNA genes have now been identified
 extracting 16S rRNA gene from CA-20.fna ...
