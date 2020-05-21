@@ -61,10 +61,7 @@ The species identified for CA-20.fna is
 Bifidobacterium bifidum
 ```
 ### Output
-As the result will be shown on stdout, so you may use > sign to save into a file.
-```
-$ speciesID.sh -i 99 -d SILVA-16S FASTA > FASTA.species.txt
-```
+The result will be shown on stdout, also it will be saved into a file automatically called FASTA.fna.species (where FASTA is your genome assembly's name)
 
 ## Issues
 This script has been tested on Linux OS, it should run smoothly if dependencies are properly installed. Please report any issues to the [issues page](https://github.com/raymondkiu/speciesID/issues).
