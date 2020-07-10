@@ -20,7 +20,7 @@ Please refer to this section in [ABRicate repository](https://github.com/tseeman
 ## Usage
 ### Options
 ```
-$ speciesID.sh -h
+$ bactspeciesID.sh -h
 This script identifies bacterial species using genome assemblies
 
 Usage: ./speciesID.sh [options] FASTA
@@ -43,7 +43,7 @@ You can specify BLASTn identity and ABRicate database if you like, 16S rRNA spec
 This script will only extract one 16S rRNA gene in the genomes even if there is multiple 16S genes in one genome, so could not detect contamination and is not built for that purpose.
 -i and -d are optional, if not specified it will run at default parameters.
 ```
-$ speciesID.sh -i 99 -d SILVA-16S FASTA
+$ bactspeciesID.sh -i 99 -d SILVA-16S FASTA
 
 will identify with BLASTn identity 99% and BLASTn coverage 50% with ABRicate database SILVA-16S
 identifying 16S rRNA genes from genome assembly CA-20.fna ...
@@ -65,10 +65,10 @@ Bifidobacterium bifidum
 The result will be shown on stdout, also it will be saved into a file automatically called FASTA.fna.species (where FASTA is your genome assembly's name)
 
 ## Issues
-This script has been tested on Linux OS, it should run smoothly if dependencies are properly installed. Please report any issues to the [issues page](https://github.com/raymondkiu/speciesID/issues).
+This script has been tested on Linux OS, it should run smoothly if dependencies are properly installed. Please report any issues to the [issues page](https://github.com/raymondkiu/bactspeciesID/issues).
 
 ## License
-[GPLv3](https://github.com/raymondkiu/speciesID/blob/master/LICENSE)
+[GPLv3](https://github.com/raymondkiu/bactspeciesID/blob/master/LICENSE)
 
 ## Author
 Raymond Kiu Raymond.Kiu@quadram.ac.uk
