@@ -1,4 +1,4 @@
-# speciesID
+# bactspeciesID
 Fast microbial species identification (16S rRNA gene-based approach) using genome assemblies. This software is run via [ABRicate](https://github.com/tseemann/abricate) gene screening on contigs.
 
 ## Dependencies - can be installed using Conda
