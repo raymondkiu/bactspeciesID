@@ -1,5 +1,5 @@
 # bactspeciesID
-Fast microbial species identification (16S rRNA gene-based approach) using genome assemblies. This software is run via [ABRicate](https://github.com/tseemann/abricate) gene screening on contigs.
+Fast microbial species identification (16S rRNA gene-based approach) using genome assemblies. This software is run via [ABRicate](https://github.com/tseemann/abricate) gene screening on contigs. BactspeciesID also checks for potential contaminations on the whole genome assemblies.
 
 ## Dependencies - can be installed using Conda
 * ABRicate v1.0.1 (https://github.com/tseemann/abricate) with all its dependecies such as Blast+ v2.2.30, any2fasta, Emboss etc, also  need to build a 16S rRNA database (recommend SILVA database)
@@ -21,45 +21,51 @@ Please refer to this section in [ABRicate repository](https://github.com/tseeman
 ### Options
 ```
 $ bactspeciesID.sh -h
-This script identifies bacterial species using genome assemblies
+bactspeciesID identifies bacterial species/potential contaminations using whole genome assemblies
 
-Usage: ./speciesID.sh [options] FASTA
-Option:
+Usage: ./bactspeciesID2.sh [options] FASTA
+
+Options:
  -i BLASTn identity (default:99)
- -c BLASTn coverage (default:50)
  -d ABRicate database (default:SILVA-16S)
+ -c BLASTn coverage (default:50)
+ -m contamination check TRUE/FALSE (default:FALSE)
+ -r removal of intermediary files TRUE/FALSE (default:TRUE)
  -h print usage and exit
  -a print author and exit
  -v print version and exit
 
-Version 1.1 (2020)
+Version 1.2 (2020)
 Author: Raymond Kiu Raymond.Kiu@quadram.ac.uk
 ```
 ### Input
-Multi-fasta genome assemblies, one file at a time. Can be any bacterial species.
+Multi-fasta genome assemblies, one genome assembly at a time. Can be any bacterial species.
 
 ### Run the software
 You can specify BLASTn identity and ABRicate database if you like, 16S rRNA species boundary is recommended at 98.6%, so 99% is to play safe (default parameter anyway). SILVA database has more than 100K sequences and manually curated so it is the recommended database to use. I have tested on >70 samples from multiple species e.g. *Bifidobacterium breve, Bifidobacterium longum, Staphylococcus spp, E. coli spp, Citrobacter spp* etc, and achieved 100% accuracy based on ANI (>95%)support (compared with type strains). Can be used as a quick preliminary analysis.
-This script will only extract one 16S rRNA gene in the genomes even if there is multiple 16S genes in one genome, so could not detect contamination and is not built for that purpose.
+Importantly, bactsepciesID extracts all 16S sequences if you use -m option, it will then tell you whether this genome is contaminated based upon 16S gene sequence comparison. If there are 16S originated from >1 species it is deemed as contaminated genome.
 -i and -d are optional, if not specified it will run at default parameters.
 ```
 $ bactspeciesID.sh -i 99 -d SILVA-16S FASTA
 
-will identify with BLASTn identity 99% and BLASTn coverage 50% with ABRicate database SILVA-16S
-identifying 16S rRNA genes from genome assembly CA-20.fna ...
+will identify with BLAST identity 99% and coverage 50% with ABRicate database SILVA-16S
+identifying 16S rRNA genes from genome assembly PH102.fna ...
 16S rRNA genes have now been identified
-extracting 16S rRNA gene from CA-20.fna ...
-index file CA-20.fna.fai not found, generating...
+extracting 16S rRNA gene from PH102.fna ...
+[checking for potential contamination]
+index file PH102.fna.fai not found, generating...
 ....still extracting...
 16S rRNA gene is now extracted
-removing intermediary files...
-16S rRNA gene sequence is now stored in CA-20.fna-16S.fna
-identifying species using ABRicate SILVA-16S database at identity >99%...
-Species identified is now stored in CA-20.fna.species
-Removing intermediary file...
-Programme will now exit
-The species identified for CA-20.fna is 
+[identifying species using ABRicate SILVA-16S database at identity >99%...]
+Species identified is now stored in PH102.fna.species
+[intermediary files have been removed]
+
+-----------------------------------------------------
+The species identified for genome assembly PH102.fna is: 
 Bifidobacterium bifidum
+Clostridium perfringens
+------------------------------------------------------------------
+[contamination check: this genome is potentially contaminated :( ]
 ```
 ### Output
 The result will be shown on stdout, also it will be saved into a file automatically called FASTA.fna.species (where FASTA is your genome assembly's name)
