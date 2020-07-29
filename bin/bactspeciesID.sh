@@ -3,7 +3,7 @@
 #print the options
 usage () {
   echo ""
-  echo "bactspeciesID identifies bacterial species/potential contaminations using whole genome assemblies"
+  echo "BactspeciesID identifies bacterial species/potential contaminations using whole genome assemblies"
   echo ""
   echo "Usage: $0 [options] FASTA"
   echo ""
@@ -53,46 +53,61 @@ done
 
 # skip over the processed options
 shift $((OPTIND-1))
-
 # check for mandatory positional parameters, only 1 positional argument will be checked
 if [ $# -lt 1 ]; then
    echo "Usage: $0 [options] FASTA"
-   echo "Option: -i BLASTn identity (default:$IDENTITY)"
-   echo "Option: -d ABRicate database (default:$DATABASE)"
-   echo "Option: -c BLASTn coverage (default:$COVERAGE)"
+   echo "e.g. $0 -m TRUE -d SILVA-16S fasta.fna"
+   echo ""
+   echo "Options:"
+   echo " -i BLASTn identity (default:$IDENTITY)"
+   echo " -d ABRicate database (default:$DATABASE)"
+   echo " -c BLASTn coverage (default:$COVERAGE)"
+   echo " -m contamination check TRUE/FALSE (default:$CONTAMINATION)"
+   echo " -r removal of intermediary files TRUE/FALSE (default:$REMOVAL)" 
    echo ""
    exit 1
 fi
 
 fasta=$1
 
-echo "will identify with BLAST identity $IDENTITY% and coverage $COVERAGE% with ABRicate database $DATABASE"
-echo "identifying 16S rRNA genes from genome assembly $fasta ..."
+echo "------------------------------------------------------------------------------------"
+echo "BactspeciesID will identify with the following parameters: "
+echo "BLAST identity $IDENTITY% and coverage $COVERAGE% with ABRicate database $DATABASE "
+echo "Contamination option is set to $CONTAMINATION "
+echo "Intermediary file removal option is set to $REMOVAL "
+echo "BactspeciesID will start identifying 16S rRNA genes from genome assembly $fasta "
+echo "------------------------------------------------------------------------------------"
+
 barrnap --quiet $1 > $fasta-gff
-echo "16S rRNA genes have now been identified"
-echo "extracting 16S rRNA gene from $fasta ..."
 
 if [[ "$CONTAMINATION" == "TRUE" ]]
 then
-        echo "[checking for potential contamination]"
         grep '16S' $fasta-gff > $fasta-16S.gff;
 else    
-        echo "[not checking for contamination]"
         grep -m 1 '16S' $fasta-gff > $fasta-16S.gff;
 fi
+        # check if there is 16S sequences
+        NUM1=$(cat $fasta-16S.gff|wc -l)
+        if [ "$NUM1" -eq "$a" ]
+        then
+                echo "No 16S sequences found, exiting..."
+                echo "Thank you for using bactspeciesID!"
+                exit 0; 
+        else
+                echo "$NUM1 16S sequence(s) found, continue..."
+        fi
+
         bedtools getfasta -fi $fasta -bed $fasta-16S.gff -fo $fasta-16S-fasta.fna;
         
-        echo "....still extracting..."
-
         grep ">" $fasta-16S-fasta.fna|sed 's/>//g' > $fasta-16S-id.txt;
         xargs samtools faidx $fasta-16S-fasta.fna < $fasta-16S-id.txt > $fasta-16S.fna
 
-        echo "16S rRNA gene is now extracted"
+        echo "$NUM1 sequence(s) extracted..."
         
-        echo "[identifying species using ABRicate $DATABASE database at identity >$IDENTITY%...]"
+        echo "[Identifying species using ABRicate $DATABASE database at identity >$IDENTITY%...]"
         abricate --quiet --db $DATABASE --mincov=$COVERAGE --minid=$IDENTITY $fasta-16S.fna|grep -v "#FILE" | awk '{print $13" "$14}' > $fasta.species
 
-        echo "Species identified is now stored in $fasta.species"
+        echo "Species identity is now stored in $fasta.species"
         if [[ "$REMOVAL" == "TRUE" ]]
         then
                 rm $fasta-gff
@@ -102,13 +117,13 @@ fi
                 rm $fasta-16S-fasta.fna.fai
                 rm $fasta-16S-id.txt
                 rm $fasta-16S.fna
-                echo "[intermediary files have been removed]"
+                echo "[Intermediary files have been removed]"
         else
-                echo "[intermediary files are NOT removed]"
+                echo "[Intermediary files are NOT removed]"
         fi
         echo ""
         echo "-----------------------------------------------------"
-        echo "The species identified for genome assembly $fasta is: "
+        echo "The species identified for genome assembly $fasta : "
         cat $fasta.species
         
         # checking for potential contamination -gt greater than 
@@ -116,7 +131,7 @@ fi
         if [ "$NUM" -eq "$a" ]
         then 
                 echo "--------------------------------------------------------------------------------------]"
-                echo "[unfortunately bactspeciesID did not identify any 16S gene sequence in this genome :( ]"
+                echo "[Unfortunately bactspeciesID did not identify any 16S gene sequence in this genome :( ]"
                 echo "Thank you for using bactspeciesID!"
                 exit 0; 
         else
