@@ -127,7 +127,7 @@ fi
         cat $fasta.species
         
         # checking for potential contamination -gt greater than 
-        NUM=$(cat $fasta.species|wc -l)
+        NUM=$(cat $fasta.species|sort -u|wc -l)
         if [ "$NUM" -eq "$a" ]
         then 
                 echo "--------------------------------------------------------------------------------------]"
