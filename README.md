@@ -1,8 +1,8 @@
-# bactspeciesID
-Fast microbial species identification (16S rRNA gene-based approach) using genome assemblies. This software is run via [ABRicate](https://github.com/tseemann/abricate) gene screening on contigs. BactspeciesID also checks for potential contaminations on the whole genome assemblies.
+# BACTspeciesID
+Fast microbial species identification (16S rRNA gene-based approach) using genome assemblies. This software is run using [ABRicate](https://github.com/tseemann/abricate) for gene screening on contigs. BACTspeciesID also checks for potential contaminations on the whole genome assemblies.
 
 ## Dependencies - can be installed using Conda
-* ABRicate v1.0.1 (https://github.com/tseemann/abricate) with all its dependecies such as Blast+ v2.2.30, any2fasta, Emboss etc, also  need to build a 16S rRNA database (recommend SILVA database)
+* ABRicate v1.0.1 (https://github.com/tseemann/abricate) with all its dependecies such as Blast+ v2.2.30, any2fasta
 * Barrnap v0.7 (https://github.com/tseemann/barrnap)
 * Bedtools
 * Samtools
@@ -73,8 +73,12 @@ The result will be shown on stdout, also it will be saved into a file automatica
 ## Issues
 This script has been tested on Linux OS, it should run smoothly if dependencies are properly installed. Please report any issues to the [issues page](https://github.com/raymondkiu/bactspeciesID/issues).
 
+## Citation
+If you use BACTspeciesID for results in your publication, please cite:
+* Kiu R, *BACTspeciesID*, **Github** `https://github.com/raymondkiu/bactspeciesID`
+
 ## License
 [GPLv3](https://github.com/raymondkiu/bactspeciesID/blob/master/LICENSE)
 
 ## Author
-Raymond Kiu Raymond.Kiu@quadram.ac.uk
+Raymond Kiu | Raymond.Kiu@quadram.ac.uk | [@raymond_kiu](https://twitter.com/raymond_kiu)
