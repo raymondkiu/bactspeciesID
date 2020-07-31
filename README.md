@@ -46,20 +46,20 @@ You can specify BLASTn identity and ABRicate database if you like, 16S rRNA spec
 Importantly, bactsepciesID extracts all 16S sequences if you use -m option, it will then tell you whether this genome is contaminated based upon 16S gene sequence comparison. If there are 16S originated from >1 species it is deemed as contaminated genome.
 -i and -d are optional, if not specified it will run at default parameters.
 ```
-$ bactspeciesID.sh -i 99 -d SILVA-16S -m TRUE FASTA.fasta
+$ bactspeciesID.sh -i 99 -d SILVA-16S -m TRUE CA-1111.fna
 
 ------------------------------------------------------------------------------------
 BactspeciesID will identify with the following parameters: 
 BLAST identity 99% and coverage 50% with database SILVA-16S 
 Contamination option is set to TRUE 
 Intermediary file removal option is set to TRUE 
-BactspeciesID will start identifying 16S rRNA genes from genome assembly CA-72.fna 
+BactspeciesID will start identifying 16S rRNA genes from genome assembly CA-1111.fna 
 ------------------------------------------------------------------------------------
 1 16S sequence(s) found, continue...
-index file CA-72.fna.fai not found, generating...
+index file CA-1111.fna.fai not found, generating...
 1 sequence(s) extracted...
 [Identifying species using SILVA-16S database at identity >99%...]
-Species identity is now stored in CA-72.fna.species
+Species identity is now stored in CA-1111.fna.species
 [Intermediary files have been removed]
 
 -----------------------------------------------------
