@@ -55,6 +55,7 @@ done
 shift $((OPTIND-1))
 # check for mandatory positional parameters, only 1 positional argument will be checked
 if [ $# -lt 1 ]; then
+   echo "Missing positional argument - your fasta assembly"
    echo "Usage: $0 [options] FASTA"
    echo "e.g. $0 -m TRUE -d SILVA-16S fasta.fna"
    echo ""
@@ -62,8 +63,9 @@ if [ $# -lt 1 ]; then
    echo " -i BLASTn identity (default:$IDENTITY)"
    echo " -d ABRicate database (default:$DATABASE)"
    echo " -c BLASTn coverage (default:$COVERAGE)"
-   echo " -m contamination check TRUE/FALSE (default:$CONTAMINATION)"
-   echo " -r removal of intermediary files TRUE/FALSE (default:$REMOVAL)" 
+   echo " -m Contamination check TRUE/FALSE (default:$CONTAMINATION)"
+   echo " -r Removal of intermediary files TRUE/FALSE (default:$REMOVAL)"
+   echo " -h Print usage and exit"
    echo ""
    exit 1
 fi
