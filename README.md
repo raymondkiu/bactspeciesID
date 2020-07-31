@@ -48,24 +48,26 @@ Importantly, bactsepciesID extracts all 16S sequences if you use -m option, it w
 ```
 $ bactspeciesID.sh -i 99 -d SILVA-16S -m TRUE FASTA.fasta
 
-will identify with BLAST identity 99% and coverage 50% with ABRicate database SILVA-16S
-identifying 16S rRNA genes from genome assembly PH102.fna ...
-16S rRNA genes have now been identified
-extracting 16S rRNA gene from PH102.fna ...
-[checking for potential contamination]
-index file PH102.fna.fai not found, generating...
-....still extracting...
-16S rRNA gene is now extracted
-[identifying species using ABRicate SILVA-16S database at identity >99%...]
-Species identified is now stored in PH102.fna.species
-[intermediary files have been removed]
+------------------------------------------------------------------------------------
+BactspeciesID will identify with the following parameters: 
+BLAST identity 99% and coverage 50% with database SILVA-16S 
+Contamination option is set to TRUE 
+Intermediary file removal option is set to TRUE 
+BactspeciesID will start identifying 16S rRNA genes from genome assembly CA-72.fna 
+------------------------------------------------------------------------------------
+1 16S sequence(s) found, continue...
+index file CA-72.fna.fai not found, generating...
+1 sequence(s) extracted...
+[Identifying species using SILVA-16S database at identity >99%...]
+Species identity is now stored in CA-72.fna.species
+[Intermediary files have been removed]
 
 -----------------------------------------------------
-The species identified for genome assembly PH102.fna is: 
-Bifidobacterium bifidum
-Clostridium perfringens
-------------------------------------------------------------------
-[contamination check: this genome is potentially contaminated :( ]
+The species identified for genome assembly CA-1111.fna : 
+Escherichia coli
+----------------------------------------------------------------------
+[contamination check: this genome is NOT known to be contaminated :) ]
+Thank you for using bactspeciesID!
 ```
 ### Output
 The result will be shown on stdout, also it will be saved into a file automatically called FASTA.fna.species (where FASTA is your genome assembly's name)
