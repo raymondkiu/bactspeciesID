@@ -14,7 +14,7 @@ Fast microbial species identification (16S rRNA gene-based approach) using genom
 TCAGATTGAACGCTGGCGGCATGCCTTACACATGCAAGTCGAACGGCAGCACGGG
 ```
 
-## To set up sequence database in ABRicate
+## To set up 16S sequence database
 Please refer to this section in [ABRicate repository](https://github.com/tseemann/abricate#making-your-own-database) and rename the database as SILVA-16S if you use the SILVA database (alternatively, any name you like).
 
 ## Usage
