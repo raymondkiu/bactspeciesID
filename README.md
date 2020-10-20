@@ -77,7 +77,7 @@ This script has been tested on Linux OS, it should run smoothly if dependencies 
 
 ## Citation
 If you use BACTspeciesID for results in your publication, please cite:
-* Kiu R, *BACTspeciesID*, **Github** `https://github.com/raymondkiu/bactspeciesID`
+* Kiu R, *BACTspeciesID: identify microbial species and genome contamination using 16S rRNA gene approach*, **GitHub** `https://github.com/raymondkiu/bactspeciesID`
 
 ## License
 [GPLv3](https://github.com/raymondkiu/bactspeciesID/blob/master/LICENSE)
